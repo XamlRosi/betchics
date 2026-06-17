@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: bank-ethics-app
+    environment:
+      - PYTHONUNBUFFERED=1
+      - ENV_FILE=.env
+    volumes:
+      - ./src:/app/src
+      - ./scripts:/app/scripts
+      - ./prompts:/app/prompts
+      - ./data:/app/data
+    ports:
+      - "5000:5000"
+    command: python -m bank_ethics.main
